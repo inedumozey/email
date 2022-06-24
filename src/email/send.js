@@ -33,12 +33,12 @@ async function send(options, username, password, cb){
             transporter.sendMail(mailOptions, (err, res)=>{
                 try{
                     if(err){
-                        throw Error(err)
+                        throw Error(err);
                     }else{
                         cb(null, feedback)
                     }
                 }catch(err){
-                    throw Error(err);
+                    cb(err, null)
                 }
                 
             })

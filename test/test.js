@@ -1,8 +1,8 @@
 const Email = require('@mozeyinedu/email');
 
 const email = new Email({
-    username: '<USERNAME>',
-    password: '<PASSWORD>'
+    username: 'drmoofficial@gmail.com',
+    password: 'iubfyewi'
 });
 
 email.send({

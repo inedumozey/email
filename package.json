@@ -1,6 +1,6 @@
 {
   "name": "@mozeyinedu/email",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "send and receive email package using gmail service",
   "main": "index.js",
   "repository": {
