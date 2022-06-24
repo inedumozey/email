@@ -1,0 +1,30 @@
+{
+  "name": "@mozeyinedu/email",
+  "version": "1.0.0",
+  "description": "send and receive email package using gmail service",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/inedumozey/email.git"
+  },
+  "keywords": [
+    "send",
+    "email",
+    "receive",
+    "email",
+    "nodmailer",
+    "mailgun",
+    "smtp",
+    "gmail-service"
+  ],
+  "author": "mozey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/inedumozey/email/issues"
+  },
+  "homepage": "https://github.com/inedumozey/email#readme",
+  "dependencies": {
+    "nodemailer": "^6.7.5",
+    "nodemailer-mailgun-transport": "^2.1.4"
+  }
+}
