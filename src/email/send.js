@@ -1,46 +1,44 @@
 const nodemailer = require('nodemailer');
 
-async function send(options, username, password, cb){
+async function send(options, user, pass, host, port, secure, cb){
     try{       
-        if(!options.receiver){
-            throw Error("receiver email is not defined!")
+        if(!options.from){
+            throw Error("sender email is not defined! {from: ''}")
+        }
+
+        if(!options.to){
+            throw Error("receiver email is not defined! {to: ''}")
         }
         else{
-            
+
             const transporter = nodemailer.createTransport({
-                host: 'smtp.gmail.com',
-                service: 'gmail',
-                port: '587',
+                host,
+                secure,
+                port,
                 auth: {
-                    user: username,
-                    pass: password
+                    user,
+                    pass
                 }
             });
-            const name = options.name || ''
+
             const subject = options.subject || ''
             const html = options.html || ''
-            const feedback = options.feedback || `Email has been successfully sent to ${options.receiver}`
-            
+            const feedback = options.feedback || `Email has been successfully sent to ${options.to}`
             
             const mailOptions = {
-                from: `${name} <no-reply>`,
-                to: options.receiver,
+                from: options.from,
+                to: options.to,
                 subject,
-                html,
-                feedback
+                html
             }
 
             transporter.sendMail(mailOptions, (err, res)=>{
-                try{
-                    if(err){
-                        throw Error(err);
-                    }else{
-                        cb(null, feedback)
-                    }
-                }catch(err){
+                if(err){
                     cb(err, null)
                 }
-                
+                else{
+                    cb(null, {...mailOptions, feedback})
+                }
             })
         }
     }

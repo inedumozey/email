@@ -3,15 +3,18 @@ const receive = require('./receive')
 
 
 class Email {
-    constructor({username, password}){
-        this.username = username
-        this.password = password
+    constructor({user, pass, host="smtp.gmail.com", port='465', secure=true}){
+        this.user = user,
+        this.pass = pass,
+        this.host = host,
+        this.port = port,
+        this.secure = secure
     }
 
     validate = async()=>{
         try{
-            if(!this.username) throw Error('username is not defined')
-            if(!this.password) throw Error('password is not defined')
+            if(!this.user) throw Error('username is not defined')
+            if(!this.pass) throw Error('password is not defined')
         }
         catch(err){
             throw err
@@ -21,7 +24,7 @@ class Email {
     send = async function handleSend(options, cb){
         try{
             await this.validate()
-            return send(options, this.username, this.password, cb)
+            return send(options, this.user, this.pass, this.host, this.port, this.secure, cb)
         }
         catch(err){
             cb(err, null)
